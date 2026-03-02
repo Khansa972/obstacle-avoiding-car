@@ -157,8 +157,10 @@ Adjust `MAX_SPEED` (0–255) and the obstacle threshold (`<= 15` in `loop()`) to
 obstacle-avoiding-car/
 ├── obstacle_avoiding_car.ino   # Main Arduino sketch
 ├── README.md                   # This file
+├── LICENSE                     # MIT License
 ├── images/                     # Project photos & media
 │   ├── car_front.jpg           # Front view of the car
+│   ├── car_front1.jpg          # Front view of the car
 │   ├── car_top.jpg             # Top view showing wiring
 │   └── competition.jpg         # RoboCUST 2024 competition photo
 └── docs/
