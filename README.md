@@ -1,7 +1,18 @@
-# 🤖 Obstacle Avoiding Car — Arduino
+# 🚗 Obstacle Avoiding Car — Arduino
 
 > **Autonomous self-navigating robot car using real-time ultrasonic sensing.**  
-> Built as a Digital Logic Design (DLD) project at STMU.
+> 🎓 **Course:** Digital Logic Design (DLD)  
+> 🏆 **Competed & Won at:** RoboCUST 2024 — Capital University of Science & Technology (CUST)
+
+<br>
+
+![Arduino](https://img.shields.io/badge/Arduino-UNO-00979D?style=flat-square&logo=arduino&logoColor=white)
+![Language](https://img.shields.io/badge/Language-C%2B%2B-00599C?style=flat-square&logo=cplusplus&logoColor=white)
+![Course](https://img.shields.io/badge/Course-DLD-8A2BE2?style=flat-square)
+![University](https://img.shields.io/badge/University-STMU-0057A8?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Complete-2ea44f?style=flat-square)
+![RoboCUST](https://img.shields.io/badge/RoboCUST-2024-333333?style=flat-square)
+![1st Place](https://img.shields.io/badge/1st_Place-🏆-FFB300?style=flat-square)
 
 <br>
 
@@ -9,7 +20,8 @@
 
 > **1st Position — Robo Maze Category**  
 > **RoboCUST Robotics Competition 2024**  
-> Capital University of Science & Technology
+> 🏛️ Hosted by: Capital University of Science & Technology (CUST)  
+> 🎓 Participant from: **STMU — Shifa Tameer-e-Millat University, Islamabad**
 
 <br>
 
@@ -17,7 +29,7 @@
 
 This project is a fully autonomous obstacle-avoiding robot car powered by an **Arduino Uno**. It uses an **HC-SR04 ultrasonic sensor** mounted on an **SG90 servo motor** to continuously scan for obstacles. When an object is detected within 15 cm, the car stops, reverses, scans left and right, and turns toward the clearer path — all without any human input.
 
-The project demonstrates core **Digital Logic Design** concepts including combinational decision logic, sequential state control, PWM-based motor speed regulation, and real-time sensor feedback loops.
+The project was built as part of the **Digital Logic Design (DLD)** course at **STMU** and demonstrates core concepts including combinational decision logic, sequential state control, PWM-based motor speed regulation, and real-time sensor feedback loops.
 
 <br>
 
@@ -38,18 +50,45 @@ The project demonstrates core **Digital Logic Design** concepts including combin
 
 ## 🧠 How It Works
 
+The car operates in a continuous feedback loop — sensing, deciding, and acting in real time:
+
+**1️⃣ Startup & Initialization**
+- Servo motor centres at **115°** (forward-facing position)
+- Takes **4 warm-up sensor readings** to stabilise the HC-SR04 before the main loop begins
+
+**2️⃣ Continuous Distance Monitoring**
+- The **HC-SR04 ultrasonic sensor** fires a sound pulse every loop cycle via pin **A0 (TRIG)**
+- The echo return time on pin **A1 (ECHO)** is converted to distance in centimetres using the **NewPing** library
+- If no echo is received (open space), the sensor returns **250 cm** as a safe default
+
+**3️⃣ Move Forward — Clear Path**
+- If measured distance is **greater than 15 cm**, all four motors ramp up gradually to `MAX_SPEED (190)`
+- Speed increases in steps of 2 every 5ms — protecting the battery from sudden inrush current
+
+**4️⃣ Obstacle Detected — Stop & Reverse**
+- If distance drops to **15 cm or less**, all motors stop immediately
+- The car then **reverses for 300 ms** to create safe clearance from the obstacle
+
+**5️⃣ Scan Right & Left**
+- Servo sweeps to **50°** → sensor reads `distanceR` (right clearance)
+- Servo sweeps to **170°** → sensor reads `distanceL` (left clearance)
+- Servo returns to centre **(115°)** after each scan for accurate readings
+
+**6️⃣ Smart Turn Decision**
+- If `distanceR >= distanceL` → **Turn Right** (right side is clearer)
+- If `distanceL > distanceR` → **Turn Left** (left side is clearer)
+- After turning, all motors resume **forward motion** and the loop restarts
+
 ```
-Power ON
-   └─> Servo centres at 115° → 4 warm-up sensor readings
-         └─> Loop: Read distance via HC-SR04
-               ├─ Distance > 15 cm  →  Move Forward
-               └─ Distance ≤ 15 cm  →  Stop
-                                         └─> Reverse (300ms)
-                                               └─> Scan Right (50°) → distanceR
-                                                     └─> Scan Left (170°) → distanceL
-                                                           ├─ distanceR ≥ distanceL → Turn Right
-                                                           └─ distanceL > distanceR → Turn Left
-                                                                 └─> Resume Forward
+Power ON → Servo 115° → Warm-up readings
+    └── Loop: Read distance
+          ├── > 15 cm  ──────────────────→  Move Forward 🟢
+          └── ≤ 15 cm  → Stop → Reverse
+                              └── Scan Right (50°)  → distanceR
+                              └── Scan Left  (170°) → distanceL
+                                    ├── distanceR ≥ distanceL → Turn Right 🔄
+                                    └── distanceL > distanceR → Turn Left  🔄
+                                              └── Resume Forward 🟢
 ```
 
 <br>
@@ -82,7 +121,7 @@ Install via **Sketch → Include Library → Add .ZIP File** in Arduino IDE:
 
 1. **Clone this repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/obstacle-avoiding-car.git
+   git clone https://github.com/Khansa972/obstacle-avoiding-car.git
    ```
 
 2. **Install the three required libraries** (links above)
@@ -120,9 +159,27 @@ Adjust `MAX_SPEED` (0–255) and the obstacle threshold (`<= 15` in `loop()`) to
 obstacle-avoiding-car/
 ├── obstacle_avoiding_car.ino   # Main Arduino sketch
 ├── README.md                   # This file
+├── images/                     # Project photos & media
+│   ├── car_front.jpg           # Front view of the car
+│   ├── car_top.jpg             # Top view showing wiring
+│   └── competition.jpg         # RoboCUST 2024 competition photo
 └── docs/
     └── DLD_Report.docx         # Full project report
 ```
+
+### 🚗 The Car
+
+| Front View | Top View |
+|:----------:|:---------:|
+| ![Front View](images/car_front.jpg) | ![Top View](images/car_top.jpg) |
+
+### 🏆 RoboCUST 2024 Competition
+
+<p align="center">
+  <img src="images/competition.jpg" alt="RoboCUST 2024 - 1st Place" width="600"/>
+  <br>
+  <em>RoboCUST 2024 — Robo Maze Category &nbsp;|&nbsp; 🏆 1st Place</em>
+</p>
 
 <br>
 
@@ -151,5 +208,5 @@ This project is open-source under the [MIT License](LICENSE).
 ---
 
 <div align="center">
-  Made with ❤️ by <a href="https://github.com/Khansa972">Khansa Bint-e-Zia</a> &nbsp;|&nbsp; CUST &nbsp;|&nbsp; RoboCUST 2024 &nbsp;|&nbsp; 🏆 1st Place — Robo Maze
+  Made with ❤️ by <a href="https://github.com/Khansa972">Khansa Bint-e-Zia</a> &nbsp;|&nbsp; STMU &nbsp;|&nbsp; RoboCUST 2024 @ CUST &nbsp;|&nbsp; 🏆 1st Place — Robo Maze
 </div>
