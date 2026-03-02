@@ -169,7 +169,7 @@ obstacle-avoiding-car/
 
 | Front View | Top View |
 |:----------:|:---------:|
-| ![Front View](images/car_front.jpg) | ![Top View](images/car_top.jpg) |
+| ![Front View](images/car_front1.jpg) | ![Top View](images/car_top.jpg) |
 
 ### 🏆 RoboCUST 2024 Competition
 
