@@ -163,8 +163,7 @@ obstacle-avoiding-car/
 │   ├── car_front1.jpg          # Front view of the car
 │   ├── car_top.jpg             # Top view showing wiring
 │   └── competition.jpg         # RoboCUST 2024 competition photo
-└── docs/
-    └── DLD_Report.docx         # Full project report
+
 ```
 
 ### 🚗 The Car
