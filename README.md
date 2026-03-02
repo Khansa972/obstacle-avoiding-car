@@ -9,8 +9,6 @@
 ![Arduino](https://img.shields.io/badge/Arduino-UNO-00979D?style=flat-square&logo=arduino&logoColor=white)
 ![Language](https://img.shields.io/badge/Language-C%2B%2B-00599C?style=flat-square&logo=cplusplus&logoColor=white)
 ![Course](https://img.shields.io/badge/Course-DLD-8A2BE2?style=flat-square)
-![University](https://img.shields.io/badge/University-STMU-0057A8?style=flat-square)
-![Status](https://img.shields.io/badge/Status-Complete-2ea44f?style=flat-square)
 ![RoboCUST](https://img.shields.io/badge/RoboCUST-2024-333333?style=flat-square)
 ![1st Place](https://img.shields.io/badge/1st_Place-🏆-FFB300?style=flat-square)
 
